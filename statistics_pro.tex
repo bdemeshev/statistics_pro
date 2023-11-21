@@ -235,7 +235,8 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \newcommand{\dNBin}{\mathrm{NBin}}
 
 \newcommand{\dTri}{\mathrm{Triangle}}
-\newcommand{\dUnif}{\mathrm{Unif}}
+\newcommand{\dUnif}{\mathrm{U}} % We use it too often...
+\newcommand{\dU}{\mathrm{U}} % We use it too often...
 \newcommand{\dCauchy}{\mathrm{Cauchy}}
 \newcommand{\dExpo}{\mathrm{Expo}}
 \newcommand{\dBeta}{\mathrm{Beta}}
@@ -1890,7 +1891,87 @@ $\hat\sigma^2_y$, в одну общую
 \end{problem}
   
 
+\begin{problem}
+  \begin{sol}
+    
+  \end{sol}
+\end{problem}
 
+\begin{problem}
+  \begin{sol}
+    
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  Величины $X_1$, $X_2$, \ldots, $X_n$ независимы и равномерно распределены $\dU[0;a]$
+  с неизвестным параметром $a$.
+  
+  Определим величину $R = \max\{X_1, \ldots, X_n\}$.
+
+  \begin{enumerate}
+  \item Найдите функцию распределения $F_R(t)$ и функцию плотности $f_R(t)$.
+  \item Найдите $\E(R)$ и $\Var(R)$.
+\end{enumerate}
+
+Рассмотрим несколько оценок для параметра $a$. 
+  \[
+  \hat a_1 = 2 \bar X, \quad \hat a_2 = \frac{2(n+1)}{n} \bar X,
+  \]
+  \[
+  \hat a_3 = R, \quad \hat a_4 = \frac{n+1}{n} R.
+  \]
+  \begin{enumerate}[resume]
+    \item Какие из предложенных оценок являются несмещёнными?
+    \item Какие из предложенных оценок являются состоятельными?
+  \end{enumerate}
+
+  \begin{sol}
+    
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  Величины $X_1$, $X_2$, \ldots, $X_n$ независимы и экспоненциально распределены $\dExpo(\lambda)$
+  с неизвестной интенсивностью $\lambda$. 
+  
+  Рассмотрим три оценки для параметра $\lambda$. 
+  \[
+  \hat\lambda_1 = \bar X, \quad \hat\lambda_2 = \frac{1}{\bar X}, \quad \hat\lambda_3 = \frac{n+1}{X_1 + \ldots + X_n}
+  \]
+  
+  Какие из предложенных оценок являются состоятельными?
+  
+  \begin{sol}  
+  \end{sol}
+\end{problem}
+
+
+
+
+
+\begin{problem}
+  Величины $X_1$, $X_2$, \ldots, $X_n$ независимы и нормально распределены $\cN(\mu; \theta - \mu^2)$
+  с неизвестными параметрами $\mu$ и $\theta$.
+  
+  Рассмотрим три оценки для параметра $\theta$. 
+  \[
+  \hat\theta_1 = \frac{\sum_{i=1}^n X_i^2}{n-1}, \quad \hat\theta_2 = \frac{\sum_{i=1}^n X_i^2}{n}
+  \]
+  \[
+  \hat\theta_3 = \frac{\sum_{i=1}^n (X_i - \bar X)^2}{n-1} + (\bar X)^2  
+  \]
+  \begin{enumerate}
+    \item Какие из предложенных оценок являются несмещёнными?
+    \item Какие из предложенных оценок являются состоятельными?
+  \end{enumerate}
+
+  \begin{sol}
+    
+  \end{sol}
+\end{problem}
 
 
 
