@@ -1891,18 +1891,6 @@ $\hat\sigma^2_y$, в одну общую
 \end{problem}
   
 
-\begin{problem}
-  \begin{sol}
-    
-  \end{sol}
-\end{problem}
-
-\begin{problem}
-  \begin{sol}
-    
-  \end{sol}
-\end{problem}
-
 
 \begin{problem}
   Величины $X_1$, $X_2$, \ldots, $X_n$ независимы и равномерно распределены $\dU[0;a]$
@@ -1928,7 +1916,20 @@ $\hat\sigma^2_y$, в одну общую
   \end{enumerate}
 
   \begin{sol}
-    
+    \[
+    F_R(t) = \begin{cases}
+      0, \text{ если } t < 0 \\
+      (t/a)^n, t\in[0;a] \\
+      1, \text{ если } t > a
+    \end{cases}  
+    \]
+    \[
+      f_R(t) = \begin{cases}
+        nt^{n-1}/a^n, t\in[0;a] \\
+        0, \text{ иначе } \\
+      \end{cases}  
+      \]  
+    $ER = \frac{n}{n+1} a$, $E(R^2) = \frac{n}{n+2}a^2$.
   \end{sol}
 \end{problem}
 
