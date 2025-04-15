@@ -7,6 +7,8 @@
 % TODO: задачки на тестирование гипотез с байесовским подходом до классического!
 % TODO: это позволяет объяснить разницу между p-value и P(H_0|данные)
 % TODO: как обозначить p-value? P(S_{\text{new}} > S \mid S, H_0)? ! Да!
+% TODO: вернуть обратно простые \mid 
+
 
 % Здесь мы держим компромисс между красотой и легкостью включения новых людей в процесс создания.
 % Поэтому не используем пакеты, которые требуют возни с установкой и настройкой.
@@ -16,6 +18,7 @@
 
 %!TeX cleanPatterns = $OUTDIR/$JOB!($OUTEXT|.synctex.gz|.tex|.pdf), /$OUTDIR/_minted-$JOB/
 \documentclass[12pt, a4paper]{article}
+\usepackage{libertine}
 
 % utf8 is the preferred encoding
 
@@ -38,10 +41,10 @@
 
 % download "Linux Libertine" fonts:
 % http://www.linuxlibertine.org/index.php?id=91&L=1
-\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% \setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
 % why do we need \newfontfamily:
 % http://tex.stackexchange.com/questions/91507/
-\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+% \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
 
 \newfontfamily\arabicfont[Script=Arabic]{Scheherazade New}
 
@@ -580,7 +583,7 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 
 \begin{problem}
- Из набора чисел $\{2,4,10,14\}$ случайным образом равновероятно по очереди выбираются три числа с возможностью повторения.
+ Из набора чисел $\{2, 4, 10, 14\}$ случайным образом равновероятно по очереди выбираются три числа с возможностью повторения.
 
 \begin{enumerate}
 \item Найдите закон распеределения (табличку с вероятностями) величины $X_1$. Найдите закон распределения величины $X_2$.
@@ -1478,7 +1481,7 @@ $\P(X_i = x)$ & $p$ & $1-p$ \\
 \end{problem}
 
 \begin{problem}
-  Величины $X_1$, \ldots , $X_n$ независимы и одинаково распределены с функцией плотности
+Величины $X_1$, \ldots , $X_n$ независимы и одинаково распределены с функцией плотности
   \[
   f(x) = \begin{cases}
     \frac{\theta \exp(-\theta^2 / 2x)}{\sqrt{2\pi x^{3}}} \text{ при } x\in [0;+\infty), \\
@@ -2202,32 +2205,53 @@ f(y) = \begin{cases}
 \end{problem}
 
 \begin{problem}
-Закон распределения величины  $X$  имеет вид
+Величины $X_i$ независимы и имеют закон распределения:
 
+\begin{minipage}{\textwidth}
+  \begin{tabular}{crrr}
+    \toprule
+      $x$ & $0$ & $1$ & $a$ \\
+    \midrule
+    $\P(X_i = x)$ & $1/4$ & $1/4$ & $2/4$ \\
+    \bottomrule
+\end{tabular}
+\end{minipage}
+  
 \begin{enumerate}
-\item  $\begin{array}{|c|ccc|}  
-  \hline 
-  {x_i } & {0} & {1} & {a} \\
-\hline 
-{P\left(X=x_i \right)} & {{1\mathord{\left/ {\vphantom {1
-4}} \right. \kern-\nulldelimiterspace} 4} } & {{1\mathord{\left/
-{\vphantom {1 4}} \right. \kern-\nulldelimiterspace} 4} } &
-{{2\mathord{\left/ {\vphantom {2 4}} \right.
-\kern-\nulldelimiterspace} 4} } \\  
-\hline  
-\end{array}$ ;
-\item $\begin{array}{|c|ccc|}  \hline {x_i } & {0} & {1} & {2} \\
-\hline {P\left(X=x_i \right)} & {{1\mathord{\left/ {\vphantom {1
-4}} \right. \kern-\nulldelimiterspace} 4} } & {a} &
-{\left({3\mathord{\left/ {\vphantom {3 4}} \right.
-\kern-\nulldelimiterspace} 4} -a\right)} \\  \hline  \end{array}$
+  \item Постройте любую состоятельную оценку для $a$. 
+  \item Если возможно, постройте несмещённую оценку для $a$.
 \end{enumerate}
 
-Постройте несмещённую оценку вида  $\hat a=\beta_1 +\beta_2 X$ для неизвестного параметра  $a$.
 \begin{sol}
 
 \end{sol}
 \end{problem}
+
+  
+\begin{problem}
+Величины $X_i$ независимы и имеют закон распределения:
+  
+\begin{minipage}{\textwidth}
+  \begin{tabular}{crrr}
+    \toprule
+      $x$ & $0$ & $1$ & $2$ \\
+    \midrule
+    $\P(X_i = x)$ & $1/4$ & $a$ & $3/4 - a$ \\
+    \bottomrule
+\end{tabular}
+\end{minipage}
+
+\begin{enumerate}
+  \item Постройте любую состоятельную оценку для $a$. 
+  \item Если возможно, постройте несмещённую оценку для $a$.
+\end{enumerate}
+
+\begin{sol}
+
+\end{sol}
+\end{problem}
+
+
 
 \begin{problem}
 Время горения лампочки распределено экспоненциально с математическим ожиданием $\mu$. 
@@ -2539,7 +2563,19 @@ $\hat\sigma^2_y$, в одну общую
 \end{problem}
 
 
+\begin{problem}
+  Криминальный город Nsk полностью поделён кланами. 
+  Мирных жителей не осталось совсем, каждый житель принадлежит одному из кланов. 
+  Число кланов $k$ неизвестно. Размер каждого клана $y_i$ неизвестен. 
 
+  Глеб Жеглов и Володя Шарапов могут отловить $n$ случайных жителей (возможно, с повторами) 
+  и узнать у них размеры их кланов, $w_1$, $w_2$, \dots, $w_n$. 
+  
+  Как Глебу и Володе построить состоятельную оценку $\bar y$?
+  \begin{sol}
+    
+  \end{sol}
+\end{problem}
 
 
 \section{Идеальных оценок не бывает}
@@ -2993,7 +3029,7 @@ $\hat p = \bar Y$.
   \]
   Найдите веса $u$ и $(1-u)$.
   \item Докажите, что центр интервала Вильсона $\hat p_w$ можно
-  проинтерпретировать следующим образом: добавим $f$ вымышленных $1$ и $f$ вымышленных $0$ 
+  проинтерпретировать следующим образом: добавим $f$ вымышленных единиц и $f$ вымышленных нулей
   в выборку и посчитаем классическую оценку вероятности для выборки с вымышленными наблюдениями,
   \[
   \hat p_w = \frac{\sum_{i=1}^n Y_i + f}{n + 2 f}.
@@ -3012,7 +3048,7 @@ $\hat p = \bar Y$.
 \end{enumerate}
 
 Доверительный интервал Агрести~— Коулла для уровня доверия 95\% строится следующим образом.
-В выборку мысленно добавляют два наблюдения равных $1$ и два наблюдений равных $0$,
+В выборку мысленно добавляют два наблюдения равных единице и два наблюдений равных нулю,
 считают оценку доли
 \[
 \hat p_{ac} = \frac{\sum_{i=1}^n Y_i + 2}{n + 4},  
@@ -3401,7 +3437,7 @@ $\hat p = \bar Y$.
 \begin{problem}
 Вовочка проверяет гипотезу $H_0$: $\mu = 0$ против альтернативной $\mu > 0$ с помощью очень простого критерия. 
 Если $\bar X > 0$, то Вовочка отвергает $H_0$, а иначе — не отвергает $H_0$.
-У Вовочки очень большое количество наблюдений. 
+У Вовочки очень-очень большое количество наблюдений, наблюдения $X_i$ независимы и одинаково распределены.
 \begin{enumerate}
   \item Чему примерно равна вероятность ошибки первого рода?
   \item Чему примерно равна вероятность второго рода?
