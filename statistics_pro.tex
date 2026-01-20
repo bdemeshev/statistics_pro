@@ -6,8 +6,9 @@
 % TODO: переформатировать разделы!
 % TODO: задачки на тестирование гипотез с байесовским подходом до классического!
 % TODO: это позволяет объяснить разницу между p-value и P(H_0|данные)
-% TODO: как обозначить p-value? P(S_{\text{new}} > S \mid S, H_0)? ! Да!
 % TODO: вернуть обратно простые \mid 
+
+% как обозначить p-value? P(S_{\text{new}} \geq S \mid S, H_0)? ! Да!
 
 
 % Здесь мы держим компромисс между красотой и легкостью включения новых людей в процесс создания.
@@ -200,8 +201,12 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 \DeclareMathOperator*{\amn}{arg\,min}
 \DeclareMathOperator*{\amx}{arg\,max}
 
-
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\hVar}{\widehat{Var}}
+\DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\hCorr}{\widehat{Corr}}
+
 \DeclareMathOperator{\sCorr}{sCorr}
 \DeclareMathOperator{\sCov}{sCov}
 \DeclareMathOperator{\sVar}{sVar}
@@ -215,40 +220,40 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 
 % https://tex.stackexchange.com/questions/151984/double-vertical-bar-notation
-\DeclarePairedDelimiterX{\kldivx}[2]{(}{)}{%
-  #1\;\delimsize\|\;#2%
-}
-\newcommand{\KL}{\mathrm{KL}\kldivx}
-\newcommand{\CE}{\mathrm{CE}\kldivx}
+% \DeclarePairedDelimiterX{\kldivx}[2]{(}{)}{%
+%  #1\;\delimsize\|\;#2%
+%}
+%\newcommand{\KL}{\mathrm{KL}\kldivx}
+%\newcommand{\CE}{\mathrm{CE}\kldivx}
 % \KL{p}{q}, \CE{p}{q}
 
 
 \let\P\relax
-% \newcommand{\P}{\mathbb{P}}
+\newcommand{\P}{\mathbb{P}}
 
 % https://tex.stackexchange.com/questions/182933/auto-detect-conditional-probabilities-in-macro
 % https://tex.stackexchange.com/questions/562819/newcommand-with-single-and-double-argument-probability-function
 
 
-\NewDocumentCommand\P{sO{}r()}{%
-  \operatorname{\mathbb{P}}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\NewDocumentCommand\P{sO{}r()}{%
+%  \operatorname{\mathbb{P}}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+% }
 
-\DeclarePairedDelimiterX\PrInn[1](){%
-  \activatebar
-  #1%
-}
+%\DeclarePairedDelimiterX\PrInn[1](){%
+%  \activatebar
+%  #1%
+%}
 
-\newcommand{\activatebar}{%
-  \begingroup\lccode`~=`|
-  \lowercase{\endgroup\def~}{\;\delimsize\vert\;}%
-  \mathcode`|=\string"8000
-}
+%\newcommand{\activatebar}{%
+%  \begingroup\lccode`~=`|
+%  \lowercase{\endgroup\def~}{\;\delimsize\vert\;}%
+%  \mathcode`|=\string"8000
+% }
 
 
 
@@ -261,67 +266,68 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 % TODO: дооформить такую автоматику на CE(A || B), KL(X || B)?
 % в условной плотности достаточно просто \mid 
 
-%\newcommand{\E}{\mathbb{E}}
-\NewDocumentCommand\E{sO{}r()}{%
-  \operatorname{\mathbb{E}}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+\newcommand{\E}{\mathbb{E}}
 
-\let\H\relax
-\NewDocumentCommand\H{sO{}r()}{%
-  \operatorname{\mathbb{H}}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\NewDocumentCommand\E{sO{}r()}{%
+%  \operatorname{\mathbb{E}}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
 
-
-\NewDocumentCommand\Var{sO{}r()}{%
-  \operatorname{\mathbb{V}ar}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\let\H\relax
+%\NewDocumentCommand\H{sO{}r()}{%
+%  \operatorname{\mathbb{H}}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
 
 
-\NewDocumentCommand\hVar{sO{}r()}{%
-  \widehat{\operatorname{\mathbb{V}ar}}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\NewDocumentCommand\Var{sO{}r()}{%
+%  \operatorname{\mathbb{V}ar}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
+
+
+%\NewDocumentCommand\hVar{sO{}r()}{%
+%  \widehat{\operatorname{\mathbb{V}ar}}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
 
 
 
 
-\NewDocumentCommand\Cov{sO{}r()}{%
-  \operatorname{\mathbb{C}ov}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\NewDocumentCommand\Cov{sO{}r()}{%
+%  \operatorname{\mathbb{C}ov}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
 
 
-\NewDocumentCommand\hCov{sO{}r()}{%
-  \widehat{\operatorname{\mathbb{C}ov}}%
-  \begingroup
-  \IfBooleanTF{#1}
-    {\PrInn*{#3}}
-    {\PrInn[#2]{#3}}%
-  \endgroup
-}
+%\NewDocumentCommand\hCov{sO{}r()}{%
+%  \widehat{\operatorname{\mathbb{C}ov}}%
+%  \begingroup
+%  \IfBooleanTF{#1}
+%    {\PrInn*{#3}}
+%    {\PrInn[#2]{#3}}%
+%  \endgroup
+%}
 
 
 
@@ -372,12 +378,17 @@ keywordstyle=\fontfamily{lmtt}\bfseries
 
 
 \newcommand{\wv}{\textrm{word2vec}}
-\newcommand \hCorr{\widehat{\Corr}}
 
 
 \newcommand{\RR}{\mathbb{R}}
-\DeclareMathOperator*{\EE}{\mathbb{E}}
-\DeclareMathOperator*{\PP}{\mathbb{P}}
+%\DeclareMathOperator*{\EE}{\mathbb{E}}
+%\DeclareMathOperator*{\PP}{\mathbb{P}}
+
+\newcommand{\tnew}{\text{new}}
+\newcommand{\told}{\text{old}}
+\newcommand{\tyes}{\text{yes}}
+\newcommand{\tno}{\text{no}}
+
 
 
 \title{Заметки к семинарам по статистике}
@@ -3317,6 +3328,62 @@ $\hat p = \bar Y$.
 
 
 \section{Проверка гипотез: общая теория}
+
+
+\begin{problem}
+  Сёгун Минамото-но Ёритомо хочет отбирать на службу только опытных самураев. 
+    Сила удара меча у опытного самурая равномерно распределена на отрезке $[2; 5]$,
+    а у неопытного — равномерно на отрезке $[1; 4]$.
+
+    Испытуемый самурай бьёт мечом и если сила удара оказалась больше порога $a$, то Ёримото принимает самурая на работу.
+
+    Существует два типа ошибок. 
+    Ошибка первого рода: на работу взяли неопытного самурая. 
+    Ошибка второго рода: опытному самураю отказали в работе. 
+
+    \begin{enumerate}
+        \item Найдите вероятности ошибок первого и второго рода при $a = 3.5$.
+        \item Постройте кривую зависимости ошибки второго рода от ошибки первого рода при различных порогах $a$.
+        \item Как изменятся ответы на пункты (а) и (б), если Ёримото даёт каждому испытуемому две попытки и сравнивает с порогом $a$ наиболее удачную попытку?
+    \end{enumerate}
+Источник: экзамен декабрь 2025, вшэ, пми. 
+\begin{sol}
+\end{sol}    
+\end{problem}
+
+
+\begin{problem} 
+  Перед нами результаты Васиных домашних заданий, $y$ (в баллах от $0$ до $100$), 
+  и информация о том, был ли ретроградным меркурий по время выполнения домашнего задания, $x$ («yes» или «no»).
+\begin{minipage}{\textwidth}
+\begin{tabular}{clllll}
+\toprule
+Оценка $y$ & $60$ & $70$ & $80$ & $40$ & $70$ \\
+Ретроградный меркурий $x$ & yes & no & yes & no & no \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+У Васи есть смутные подозрения, что ретроградный меркурий благоприятен хорошей оценке за домашнюю работу. 
+    \begin{enumerate}
+        \item Найдите разницу между средней оценкой с ретроградным меркурием и без него, $S = \bar y_{\tyes} - \bar y_{\tno}$.
+    \end{enumerate}
+Рассмотрим скучную гипотезу $H_0$: ретроградный меркурий не влияет на оценку, и Васину гипотезу $H_a$: ретроградный меркурий благоприятен хорошей оценке. 
+Если верить в $H_0$, то разумно предположить, что переменная $x$ — это просто случайная равновероятная перестановка двух «yes» и трёх «no».
+\begin{enumerate}[resume]
+  \item Найдите $P$-значение, то есть вероятность получить в новом эксперименте значение статистики $S_{\tnew}$ такое же как $S$ или выше, предполагая, что в новом эксперименте верна гипотеза $H_0$,
+  \[
+  \text{P-value} = \P(S_{\tnew} \geq S \mid S, H_0).
+  \]
+  \item Вася решил отвергнуть гипотезу $H_0$, если $P$-значение окажется меньше $0.05$, и не отвергнуть её в противном случае. 
+  К какому статистическому выводу придёт Василий?
+\end{enumerate}
+\begin{sol}
+\end{sol}    
+\end{problem}
+
+
+
+
 
 
 \begin{problem}
