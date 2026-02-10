@@ -2681,22 +2681,107 @@ $\hat\sigma^2_y$, в одну общую
 \end{problem}
 
 
+\begin{problem}
+Величины $X_1$, $X_2$, \dots, $X_n$ независимы и биномиально распределены $\dBin(a, p)$ с известным числом испытаний $a$ и неизвестной вероятностью успеха $p$. 
+
+Рассмотрим оценку $\hat b_n = \bar X (a - \bar X)/a$ для неизвестной дисперсии $b = \Var(X_i)$.
+
+\begin{enumerate}
+  \item Выразите параметр $b$ через неизвестный параметр $p$ и известный параметр $a$. 
+  \item Является ли оценка $\hat b_n$ несмещённой? Найдите величину смещения, если оценка является смещённой. 
+  \item Является ли оценка $\hat b_n$ состоятельной?
+\end{enumerate}
+\begin{sol}
+  \begin{enumerate}
+    \item $b = a p(1-p)$;
+    \item оценка смещённая;
+    \item оценка состоятельная.
+  \end{enumerate}  
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+Величины $X_1$, $X_2$, \dots, $X_n$ независимы и нормально распределены $\cN(7; \sigma^2)$ с неизвестной дисперсией $\sigma^2$.
+
+Рассмотрим оценку $\hat\sigma = c_1 \sum_{i=1}^n \abs{X_i - c_2}/n$ для стандартной ошибки $\sigma$.
+
+\begin{enumerate}
+  \item При каких значениях $c_1$ и $c_2$ оценка $\hat\sigma$ является несмещённой?
+  \item При каких значениях $c_1$ и $c_2$ оценка $\hat\sigma$ является состоятельной?
+\end{enumerate}
+  \begin{sol}
+  \end{sol}
+\end{problem}
+
+
+
+\begin{problem}
+Возможны ли следующие ситуаций?
+\begin{enumerate}
+  \item Оценка $\hat\theta_n$ является несмёщенной при нечётных $n$ и смещённой при чётных $n$, а вся последовательность оценок является состоятельной;
+  \item Оценка $\hat\theta_n$ является несостоятельной при нечётных $n$ и состоятельной при чётных $n$, а вся последовательность оценок является несмещённой.
+\end{enumerate}
+  \begin{sol}
+    \begin{enumerate}
+      \item да;
+      \item нет. 
+    \end{enumerate}
+  \end{sol}
+\end{problem}
+
+\begin{problem}
+Величины $Y_1$, $Y_2$, $Y_3$ независимы и нормально распределены $\cN(0;\sigma^2)$ с неизвестной дисперсией $\sigma^2$.
+
+Значение функции плотности нормального распределения $\cN(0;\sigma^2)$ в известной точке $x$ является неизвестным параметром $f(x)$.
+
+Рассмотрим оценку $\hat f(x)$:
+\[
+\hat f(x) = \begin{cases}
+c/\sqrt{Y_1^2 + Y_2^2 + Y_3^2}, \text{ если } x^2 \leq Y_1^2 + Y_2^2 + Y_3^2; \\
+0, \text{ иначе.}
+\end{cases}
+\]
+
+\begin{enumerate}
+  \item Запишите $f(x)$ через известный параметр $x$ и неизвестный параметр $\sigma^2$.
+  \item Подберите константу $c$ так, чтобы оценка $\hat f(x)$ была несмещённой для $f(x)$. 
+\end{enumerate}
+
+\begin{sol}
+  $c = 0.5$.
+  \end{sol}
+\end{problem}
+
+
+\begin{problem}
+  \begin{sol}
+  \end{sol}
+\end{problem}
+
+\begin{problem}
+  \begin{sol}
+  \end{sol}
+\end{problem}
+
+
+
 \section{Идеальных оценок не бывает}
 
 \begin{leftbar}
 Свойства производной лог-правдоподобия $S_1 = \pdv{\ln f(X_1)}{\theta}$:
 \[
-  \E(S_1) = 0, \quad \Var(S_1) = \E(S_1^2) = - \E*(\pdv{S_1}{\theta}), \quad \Cov(S_1, \hat \theta) = \pdv{\E(S_1)}{\theta}.  
+  \E(S_1) = 0, \quad \Var(S_1) = \E(S_1^2) = - \E\left(\pdv{S_1}{\theta}\right), \quad \Cov(S_1, \hat \theta) = \pdv{\E(S_1)}{\theta}.  
 \]  
 Информация Фишера о неизвестном параметре $\theta$, содержащаяся в одном наблюдении:
 \[
-I_1(\theta) = \Var*(\pdv{\ln f(X_1)}{\theta}) = \E*(\left(\pdv{\ln f(X_1)}{\theta}\right)^2)= - \E*(\pdv[2]{\ln f(X_1)}{\theta})
+I_1(\theta) = \Var\left(\pdv{\ln f(X_1)}{\theta}\right) = \E\left(\left(\pdv{\ln f(X_1)}{\theta}\right)^2\right)= - \E\left(\pdv[2]{\ln f(X_1)}{\theta}\right)
 \]
 Для независимых наблюдений $I_n(\theta) = nI_1(\theta)$.
 
 Неравенство Рао~— Крамера («слишком хорошей оценки не бывает»)
 \[
-\Var(\hat \theta) \geq \frac{\left(\Cov*(\pdv{\ln f(X_1, \ldots, X_n)}{\theta}, \hat\theta)\right)^2}{I_n(\theta)} = \frac{\left(\pdv{\E(\hat\theta)}{\theta}\right)^2}{I_n(\theta)}
+\Var(\hat \theta) \geq \frac{\left(\Cov\left(\pdv{\ln f(X_1, \ldots, X_n)}{\theta}, \hat\theta\right)\right)^2}{I_n(\theta)} = \frac{\left(\pdv{\E(\hat\theta)}{\theta}\right)^2}{I_n(\theta)}
 \]
 \end{leftbar}
 
@@ -2722,7 +2807,7 @@ I_1(\theta) = \Var*(\pdv{\ln f(X_1)}{\theta}) = \E*(\left(\pdv{\ln f(X_1)}{\thet
   \item Найдите $\E(S_1)$, $\E(S_1^2)$, $\Var(S_1)$.
   \item Докажите, что  $\E(S_1) = 0$ при любых вероятностях $f(x)$.
   \item Какие значения с какими вероятностями принимает величина $\pdv{S_1}{\theta}$?
-  \item Найдите $\E*(\pdv{S_1}{\theta})$.
+  \item Найдите $\E\left(\pdv{S_1}{\theta}\right)$.
   \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в одном наблюдении, $I_1(\theta)$.
   \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в $n$ наблюдениях, $I_n(\theta)$. 
   \item Найдите минимально возможную дисперсию оценки $\hat \theta_A$ по $n$ наблюдениям с $\E(\hat \theta_A) = 0.2 + 0.9\theta$.
@@ -2751,7 +2836,7 @@ I_1(\theta) = \Var*(\pdv{\ln f(X_1)}{\theta}) = \E*(\left(\pdv{\ln f(X_1)}{\thet
     \item Какие значения принимает величина $S_1$?
     \item Найдите $\E(S_1)$, $\E(S_1^2)$, $\Var(S_1)$.
     \item Какие значения принимает величина $\pdv{S_1}{a}$?
-    \item Найдите $\E*(\pdv{S_1}{a})$.
+    \item Найдите $\E\left(\pdv{S_1}{a}\right)$.
     \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в одном наблюдении, $I_1(a)$.
     \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в $n$ наблюдениях, $I_n(a)$. 
     \item Найдите минимально возможную дисперсию оценки $\hat a_1$ по $n$ наблюдениям с $\E(\hat a_1) = 0.3 + 0.9a$.
@@ -2777,7 +2862,7 @@ I_1(\theta) = \Var*(\pdv{\ln f(X_1)}{\theta}) = \E*(\left(\pdv{\ln f(X_1)}{\thet
   \item Какие значения принимает величина $S_1$?
   \item Найдите $\E(S_1)$, $\E(S_1^2)$, $\Var(S_1)$.
   \item Какие значения принимает величина $\pdv{S_1}{a}$?
-  \item Найдите $\E*(\pdv{S_1}{a})$.
+  \item Найдите $\E\left(\pdv{S_1}{a}\right)$.
   \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в одном наблюдении, $I_1(a)$.
   \item Найдите информацию Фишера о неизвестном параметре, содержащуюся в $n$ наблюдениях, $I_n(a)$. 
   \item Найдите минимально возможную дисперсию оценки $\hat a_1$ по $n$ наблюдениям с $\E(\hat a_1) = 0.3 + 0.9a$.
